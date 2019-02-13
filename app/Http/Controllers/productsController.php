@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Request;
+use App\products;
+use App\Http\Resource\Products as ProductsResource;
 
 class productsController extends Controller
 {
@@ -13,7 +16,8 @@ class productsController extends Controller
      */
     public function index()
     {
-        //
+        $Products = products::orderby('date_created','desc')paginate(20);
+        return ProductsResource::collection($Products);
     }
 
     /**
@@ -46,6 +50,8 @@ class productsController extends Controller
     public function show($id)
     {
         //
+        $product = products::findOrFail($id);
+        return new ProductsResource($product);
     }
 
     /**
@@ -80,5 +86,7 @@ class productsController extends Controller
     public function destroy($id)
     {
         //
+        $product = products::findOrFail($id);
+        
     }
 }
