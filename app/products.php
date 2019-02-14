@@ -8,7 +8,7 @@ class products extends Model
 {
     //
   public function users(){
-    $this->belongsTo('User');
+    $this->belongsTo('App\User');
   }
   public function images(){
     $this->hasMany('App\Images');
