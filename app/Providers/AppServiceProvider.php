@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Http\Resource\json\Resource;
+use Illuminate\Http\Resources\json\Resource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        Schema::defaultStringLenght(250);
+        Schema::defaultStringLength(250);
         Resource::withoutWrapping();
     }
 
