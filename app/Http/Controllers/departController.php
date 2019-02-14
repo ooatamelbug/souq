@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Request;
+use App\Depart;
+use App\Http\Resource\Depart as ResourcesDepart;
 
 class departController extends Controller
 {
@@ -13,7 +16,7 @@ class departController extends Controller
      */
     public function index()
     {
-        //
+        return ResourcesDepart::collection(Depart::ALL());
     }
 
     /**
@@ -45,7 +48,9 @@ class departController extends Controller
      */
     public function show($id)
     {
-        //
+
+      return ResourcesDepart::collection(Depart::findOrFail($id));
+
     }
 
     /**
