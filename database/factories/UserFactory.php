@@ -17,6 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'lastname' => $faker->name,
+        'Ugroup' => $faker-> 0,
         'phone' => $faker-> '0'.mt_rand( [1000000000, 1299999999]),
         'country' => $faker->name,
         'email' => $faker->unique()->safeEmail,
