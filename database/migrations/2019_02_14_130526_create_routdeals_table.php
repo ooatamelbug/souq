@@ -15,7 +15,7 @@ class CreateRoutdealsTable extends Migration
     {
         Schema::create('routdeals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fordeal');
+            $table->integer('fordeal');
             $table->smallInteger('stat');
             $table->timestamps();
         });
