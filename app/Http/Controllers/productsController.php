@@ -38,6 +38,16 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
+       $product = $request->isMatch('put') ? products::find($request->productid) : new products ;
+        $product->id = $request->input('productid');
+        $product->name = $request->input('name');
+        $product->pice = $request->input('pice');
+        $product->forpart = $request->input('part');
+        $product->fordepart = $request->input('depart');
+        
+        if($product->save()){
+            return ProductsResource::collection(products::All());   
+        }
         
     }
 
@@ -88,5 +98,8 @@ class productsController extends Controller
         //
         $product = products::findOrFail($id);
 
+        if ($product->delete()) {
+            return ProductsResource::collection(products::All());
+        }
     }
 }
