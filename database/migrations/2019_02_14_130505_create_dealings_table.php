@@ -15,11 +15,14 @@ class CreateDealingsTable extends Migration
     {
         Schema::create('dealings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('from_pro');
-            $table->string('to_pro');
-            $table->string('cash')->nullable();
-            $table->smallInteger('stat');
+            $table->unsignedInteger('from_pro');
+            $table->unsignedInteger('to_pro');
+            $table->integer('cash')->nullable();
+            $table->smallInteger('stat')->default(0);
             $table->timestamps();
+            //$table->foreign('form_pro')->references('products')->on('id')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('to_pro')->references('products')->on('id')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

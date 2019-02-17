@@ -7,10 +7,10 @@ $factory->define(App\products::class, function (Faker $faker) {
     return [
         //
         'pro_name' => $faker->text(100),
-        'price' => $faker->integer(10),
+        'price' => $faker->numberBetween(100,10000),
         'stat' => 0,
-        'foruser' => $faker->randomElement($userid);
-        'fordepart' => $faker->unique()->numberBetween(1, App\Depart::count());
-        'forpart' => $faker->unique()->numberBetween(1, App\Depart::count());
+        'foruser' => $faker->randomElement($userid),
+        'fordepart' => $faker->unique(true)->numberBetween(1, App\Depart::count()),
+        'forpart' => $faker->unique(true)->numberBetween(1, App\Depart::count())
     ];
 });

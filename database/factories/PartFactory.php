@@ -2,8 +2,8 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(App\Part::class, function (Faker $faker) {
     return [
-      'title' => $faker->text(30);
+      'title' => $faker->text(20)
     ];
 });

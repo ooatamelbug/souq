@@ -14,7 +14,12 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call([
           productTableSeeder::class,
-          UsersTableSeeder::class
+          UsersTableSeeder::class,
+          DepartTableSeeder::class,
+          DetailsTableSeeder::class,
+          RoutedaelTableSeeder::class,
+          PartTableSeeder::class
+          //ImagesTableSeeder::class
         ]);
     }
 }

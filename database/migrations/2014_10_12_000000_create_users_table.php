@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('country');
-            $table->smallInteger('Ugroup')
-            $table->string('phone')->unique();
+            $table->smallInteger('Ugroup')->default(0);
+            $table->string('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

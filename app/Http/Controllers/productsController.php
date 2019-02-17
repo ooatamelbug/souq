@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request;
+use App\Http\Requests;
 use App\products;
-use App\Http\Resource\Products as ProductsResource;
+use App\Http\Resources\Products as ProductsResource;
 
 class productsController extends Controller
 {
@@ -16,7 +16,7 @@ class productsController extends Controller
      */
     public function index()
     {
-        $Products = products::orderby('created_at','desc')paginate(20);
+        $Products = products::orderby('created_at','desc')->paginate(40);
         return ProductsResource::collection($Products);
     }
 
@@ -38,7 +38,7 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

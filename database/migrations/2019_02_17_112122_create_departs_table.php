@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoutdealsTable extends Migration
+class CreateDepartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRoutdealsTable extends Migration
      */
     public function up()
     {
-        Schema::create('routdeals', function (Blueprint $table) {
+        Schema::create('departs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('fordeal');
-            $table->smallInteger('stat')->default(0);
+            $table->string('title');
             $table->timestamps();
-          //$table->foreign('fordeal')->references('dealing')->on('id')->onDelete('cascade')->onUpdate('cascade');
-
         });
     }
 
@@ -30,6 +27,6 @@ class CreateRoutdealsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routdeals');
+        Schema::dropIfExists('departs');
     }
 }
