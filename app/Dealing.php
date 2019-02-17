@@ -8,6 +8,6 @@ class Dealing extends Model
 {
     //
     public function routed(){
-      return belongsTo('App\Routdeal');
+      return $this->belongsTo('App\Routdeal');
     }
 }
