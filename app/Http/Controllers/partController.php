@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request;
+use App\Http\Requests;
 use App\Part;
-use App\Http\Resource\Part as ResourcesPart;
+use App\Http\Resources\Part as ResourcesPart;
 
 class partController extends Controller
 {
@@ -16,7 +16,7 @@ class partController extends Controller
      */
     public function index()
     {
-        return ResourcesPart::collection(Part::ALL());
+        return ResourcesPart::collection(Part::all());
     }
 
     /**
@@ -49,7 +49,7 @@ class partController extends Controller
     public function show($id)
     {
 
-      return ResourcesPart::collection(Part::findOrFail($id));
+      return new ResourcesPart(Part::findOrFail($id));
 
     }
 

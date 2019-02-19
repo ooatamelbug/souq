@@ -8,6 +8,6 @@ class Part extends Model
 {
     //
     public function product(){
-      $this->belongsTo('App\products');
+      return $this->hasOne('App\products','forpart');
     }
 }

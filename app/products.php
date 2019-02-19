@@ -8,18 +8,18 @@ class products extends Model
 {
     //
   public function users(){
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\User','foruser');
   }//
 public function desctipion(){
-  return $this->belongsTo('App\Details');
+  return $this->hasOne('App\Details','forprod');
 }
   public function images(){
-    return $this->hasMany('App\Images');
+    return $this->hasMany('App\Images', 'iamages');
   }
   public function depart(){
-    return $this->hasOne('App\Depart');
+    return $this->belongsTo('App\Depart','fordepart');
   }
   public function part(){
-    return $this->hasOne('App\Part');
+    return $this->belongsTo('App\Part','forpart');
   }
 }

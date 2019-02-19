@@ -8,6 +8,6 @@ class Routdeal extends Model
 {
     //
     public function deal(){
-     return $this->hasOne('App\Dealing');
+     return $this->hasOne('App\Dealing' ,'fordeal');
     }
 }

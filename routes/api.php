@@ -17,7 +17,35 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('products', 'productsController@index');
-Route::get('products/{$id}', 'productsController@show');
+Route::get('products/{id}', 'productsController@show');
 Route::post('products', 'productsController@store');
 Route::put('products', 'productsController@store');
-Route::delete('products', 'productsController@destroy');
+Route::delete('products/{id}', 'productsController@destroy');
+
+
+Route::get('users', 'userController@index');
+Route::get('users/{id}', 'userController@show');
+Route::post('users', 'userController@store');
+Route::put('users', 'userController@store');
+Route::delete('users/{id}', 'userController@destroy');
+
+
+Route::get('dealings', 'dealingController@index');
+Route::get('dealings/{id}', 'dealingController@show');
+Route::post('dealings', 'dealingController@store');
+Route::put('dealings', 'dealingController@store');
+Route::delete('dealings/{id}', 'dealingController@destroy');
+
+
+Route::get('parts', 'partController@index');
+Route::get('parts/{id}', 'partController@show');
+Route::post('parts', 'partController@store');
+Route::put('parts', 'partController@store');
+Route::delete('parts/{id}', 'partController@destroy');
+
+
+Route::get('departs', 'departController@index');
+Route::get('departs/{id}', 'departController@show');
+Route::post('departs', 'departController@store');
+Route::put('departs', 'departController@store');
+Route::delete('departs/{id}', 'departController@destroy');

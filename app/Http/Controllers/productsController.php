@@ -38,17 +38,18 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
-       $product = $request->isMatch('put') ? products::find($request->productid) : new products ;
-        $product->id = $request->input('productid');
-        $product->name = $request->input('name');
-        $product->pice = $request->input('pice');
-        $product->forpart = $request->input('part');
-        $product->fordepart = $request->input('depart');
-        
-        if($product->save()){
-            return ProductsResource::collection(products::All());   
-        }
-        
+      //$product = $request->isMatch('put') ? products::find($request->productid) : new products ;
+      $product = new products ;
+       $product->id = $request->input('productid');
+       $product->pro_name = $request->input('name');
+       $product->price = $request->input('price');
+       $product->forpart = $request->input('part');
+       $product->fordepart = $request->input('depart');
+
+       if($product->save()){
+           return ProductsResource::collection(products::all());
+       }
+
     }
 
     /**
@@ -63,14 +64,14 @@ class productsController extends Controller
         $product = products::findOrFail($id);
         return new ProductsResource($product);
     }
-
+/*
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+  /*  public function edit($id)
     {
         //
     }
@@ -82,11 +83,11 @@ class productsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
         //
     }
-
+*/
     /**
      * Remove the specified resource from storage.
      *

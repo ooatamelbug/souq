@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Dealing;
-use App\Http\Resources\Dealing as DealingResource;
-
-class dealingController extends Controller
+use App\User;
+use App\Http\Resources\User as UserResource;
+class userController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,9 @@ class dealingController extends Controller
      */
     public function index()
     {
-        //
+
+          $User = User::orderby('created_at','desc')->paginate(40);
+          return UserResource::collection($User);
     }
 
     /**

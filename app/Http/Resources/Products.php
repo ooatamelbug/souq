@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 //use App\Http\Resource\Images as ImagesResource;
 use App\User;
 use App\Depart;
+//use App\products;
 use App\Part;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\Depart as DepartResource;
@@ -22,10 +23,9 @@ class Products extends JsonResource
     public function toArray($request)
     {
       $user = User::find($this->foruser);
+
       $depart = Depart::find($this->fordepart);
-       $part = Part::find($this->forpart);
-         $user->name;
-        //return parent::toArray($request);
+      $part = Part::find($this->forpart);
         return [
           'id' => $this->id,
           'name' => $this->pro_name,
@@ -33,14 +33,9 @@ class Products extends JsonResource
           'date' => $this->created_at,
           'status' => $this->stat,
           //'images' => ImagesResource::collection(Image::find($this->imges)),
-          'user' =>  $user->name,
-          'depart' =>  $depart->title,
-          'part' =>  $part->title,
-          //'user' =>  new User::collection($this->whenLoaded('users')),
-          //'depart' => new Depart::collection($this->whenLoaded('depart')),
-          //'part' => new Part::collection($this->whenLoaded('product'))
-          //'depart' => DepartResource::collection($this->depart),
-          //'part' => PartResource::collection($this->part)
+          'user' =>  products::find($this->id)->users,
+          'depart' =>  products::find($this->id)->depart,
+          'part' =>  products::find($this->id)->part
         ];
     }
 }

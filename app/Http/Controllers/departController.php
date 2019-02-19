@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request;
+use App\Http\Requests;
 use App\Depart;
-use App\Http\Resource\Depart as ResourcesDepart;
+use App\Http\Resources\Depart as ResourcesDepart;
 
 class departController extends Controller
 {
@@ -16,19 +16,19 @@ class departController extends Controller
      */
     public function index()
     {
-        return ResourcesDepart::collection(Depart::ALL());
+        return ResourcesDepart::collection(Depart::all());
     }
 
-    /**
+  /*  /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+  /*  public function create()
     {
         //
     }
-
+*/
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +37,17 @@ class departController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //$product = $request->isMatch('put') ? Depart::find($request->departid) : new Depart ;
+      $product = new Depart ;
+       $product->id = $request->input('productid');
+       $product->name = $request->input('name');
+       $product->pice = $request->input('pice');
+       $product->forpart = $request->input('part');
+       $product->fordepart = $request->input('depart');
+
+       if($product->save()){
+           return ProductsResource::collection(products::all());
+       }
     }
 
     /**
@@ -49,7 +59,7 @@ class departController extends Controller
     public function show($id)
     {
 
-      return ResourcesDepart::collection(Depart::findOrFail($id));
+      return new ResourcesDepart(Depart::findOrFail($id));
 
     }
 
@@ -59,7 +69,7 @@ class departController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+/*    public function edit($id)
     {
         //
     }
@@ -71,11 +81,11 @@ class departController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+  /*  public function update(Request $request, $id)
     {
         //
     }
-
+*/
     /**
      * Remove the specified resource from storage.
      *
@@ -84,6 +94,10 @@ class departController extends Controller
      */
     public function destroy($id)
     {
-        //
+      return  $depart = Depart::findOrFail($id);
+
+      if ($product->delete()) {
+          return ResourcesDepart::collection(Depart::All());
+      }
     }
 }

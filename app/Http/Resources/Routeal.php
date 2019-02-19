@@ -14,6 +14,10 @@ class Routeal extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+          'id' => $this->id,
+          'dealing' => $this->fordeal,
+          'status' => $this->stat
+        ];
     }
 }
