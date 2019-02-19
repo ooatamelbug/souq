@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Routdeal;
+use App\Http\Resources\admin\Routeal as RoutdealResource;
+
 
 class routdealController extends Controller
 {
@@ -14,6 +18,8 @@ class routdealController extends Controller
     public function index()
     {
         //
+            $routed = Routdeal::orderby('created_at','desc')->paginate(5);
+            return RoutdealResource::collection($routed);
     }
 
     /**
@@ -46,6 +52,8 @@ class routdealController extends Controller
     public function show($id)
     {
         //
+        $routed = Routdeal::findOrFail($id);
+        return new RoutdealResource($routed);
     }
 
     /**

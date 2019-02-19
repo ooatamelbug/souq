@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Part;
-use App\Http\Resources\Part as ResourcesPart;
+use App\Http\Resources\admin\Part as ResourcesPart;
 
 class partController extends Controller
 {
@@ -37,7 +37,18 @@ class partController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if ($request->isMerhod('post')) {
+
+        $Part = new Part;
+
+         $Part->title = $request->input('title');
+         if($Part->save()){
+             return ResourcesPart::collection(Part::all());
+         }
+
+      } else {
+        return redirect();
+      }
     }
 
     /**
@@ -73,7 +84,19 @@ class partController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      if ($request->isMerhod('put')) {
+
+        $Part = Part::findOrFail($id);
+
+         $Part->id = $request->input('partid');
+         $Part->title = $request->input('title');
+         if($Part->save()){
+             return ResourcesPart::collection(Part::all());
+         }
+
+      } else {
+        return redirect();
+      }
     }
 
     /**

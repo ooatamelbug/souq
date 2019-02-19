@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,12 +14,12 @@ class Dealing extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-          'from' => Dealing::find($this->id)->productF,
-          'to' => Dealing::find($this->id)->productT,
-          'cash' => $this->cash,
-          'status' => $this->stat,
-          'date' => $this->created_at,
-        ];
+      return [
+        'from' => Dealing::find($this->id)->productF,
+        'to' => Dealing::find($this->id)->productT,
+        'cash' => $this->cash,
+        'status' => $this->stat,
+        'date' => $this->created_at,
+      ];
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\products;
-use App\Http\Resources\Products as ProductsResource;
+use App\Http\Resources\Admin\Products as ProductsResource;
 
 class productsController extends Controller
 {
@@ -38,17 +38,28 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
-      //$product = $request->isMatch('put') ? products::find($request->productid) : new products ;
-      $product = new products ;
-       $product->id = $request->input('productid');
-       $product->pro_name = $request->input('name');
-       $product->price = $request->input('price');
-       $product->forpart = $request->input('part');
-       $product->fordepart = $request->input('depart');
+      if ($request->isMerhod('post')) {
+        $request->validate([
+          'name' => 'require|string|max:100',
+          'price' => 'require|integer|max:10',
+          'part' => 'require|integer|max:10',
+          'depart' => 'require|integer|max:10',
+        ]);
+        $product = new products ;
+         $product->pro_name = $request->input('name');
+         $product->price = $request->input('price');
+         $product->forpart = $request->input('part');
+         $product->fordepart = $request->input('depart');
+         $product->foruser = auth()->user()->id;
 
-       if($product->save()){
-           return ProductsResource::collection(products::all());
-       }
+         if($product->save()){
+             return ProductsResource::collection(products::all());
+         }
+      } else {
+
+        return redirect();
+      }
+
 
     }
 
@@ -83,11 +94,27 @@ class productsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    /*public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        //
+      if ($request->isMerhod('put')) {
+
+        $product = products::findOrFail($id);
+ ;
+         $product->id = $request->input('productid');
+         $product->pro_name = $request->input('name');
+         $product->price = $request->input('price');
+         $product->forpart = $request->input('part');
+         $product->fordepart = $request->input('depart');
+         $product->foruser = auth()->user()->id;
+         if($product->save()){
+             return ProductsResource::collection(products::all());
+         }
+
+      } else {
+        return redirect();
+      }
     }
-*/
+
     /**
      * Remove the specified resource from storage.
      *

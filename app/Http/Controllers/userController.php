@@ -15,21 +15,20 @@ class userController extends Controller
      */
     public function index()
     {
-
           $User = User::orderby('created_at','desc')->paginate(40);
           return UserResource::collection($User);
     }
-
+/*
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+  /*  public function create()
     {
         //
     }
-
+*/
     /**
      * Store a newly created resource in storage.
      *
@@ -38,7 +37,8 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -49,18 +49,7 @@ class userController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new UserResource(User::find($id));
     }
 
     /**
@@ -72,7 +61,12 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $User = User::findOrFail($id);
+        $User->stat = 1;
+        if($User->save()){
+            return UserResource::collection(User::all());
+        }
+
     }
 
     /**
@@ -83,6 +77,11 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+      //
+        $User = User::findOrFail($id);
+
+        if ($product->delete()) {
+            return UserResource::collection(User::All());
+        }
     }
 }

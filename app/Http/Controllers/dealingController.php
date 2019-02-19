@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Dealing;
-use App\Http\Resources\Dealing as DealingResource;
+//use App\Http\Resources\Dealing as DealingResource;
+use App\Http\Resources\Admin\Dealing as DealingResource;
 
 class dealingController extends Controller
 {
@@ -16,6 +17,7 @@ class dealingController extends Controller
      */
     public function index()
     {
+      return DealingResource::collection(Dealing::all());
         //
     }
 

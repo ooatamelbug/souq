@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-//use App\Http\Resource\Images as ImagesResource;
 use App\User;
 use App\Depart;
 use App\Part;
+use App\Http\Resources\Admin\User as UserResource;
+use App\Http\Resources\Depart as DepartResource;
+use App\Http\Resources\Part as PartResource;
 
 class Products extends JsonResource
 {
@@ -29,9 +31,9 @@ class Products extends JsonResource
           'date' => $this->created_at,
           'status' => $this->stat,
           //'images' => ImagesResource::collection(Image::find($this->imges)),
-          'user' =>  products::find($this->id)->users,
-          'depart' =>  products::find($this->id)->depart,
-          'part' =>  products::find($this->id)->part
+          'user' => new UserResource(products::find($this->id)->users),
+          'depart' => new DepartResource(products::find($this->id)->depart),
+          'part' => new PartResource( products::find($this->id)->part)
         ];
     }
 }

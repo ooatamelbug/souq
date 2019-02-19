@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\products;
+use App\Http\Resources\admin\Details as DetailsResource;
 
 class DetailsController extends Controller
 {

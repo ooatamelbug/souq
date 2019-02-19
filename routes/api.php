@@ -37,6 +37,9 @@ Route::put('dealings', 'dealingController@store');
 Route::delete('dealings/{id}', 'dealingController@destroy');
 
 
+Route::get('rdeal', 'routdealController@index');
+
+
 Route::get('parts', 'partController@index');
 Route::get('parts/{id}', 'partController@show');
 Route::post('parts', 'partController@store');

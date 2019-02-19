@@ -22,4 +22,10 @@ public function desctipion(){
   public function part(){
     return $this->belongsTo('App\Part','forpart');
   }
+  public function dealF(){
+    return $this->oneToMany('App\Dealing','from_pro');
+  }
+  public function dealT(){
+    return $this->oneToMany('App\Dealing','to_pro');
+  }
 }
