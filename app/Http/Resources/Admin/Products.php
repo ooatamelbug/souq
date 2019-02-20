@@ -20,16 +20,11 @@ class Products extends JsonResource
      */
     public function toArray($request)
     {
-      $user = User::find($this->foruser);
-
-      $depart = Depart::find($this->fordepart);
-      $part = Part::find($this->forpart);
         return [
           'id' => $this->id,
           'name' => $this->pro_name,
           'price' => $this->price,
           'date' => $this->created_at,
-          'status' => $this->stat,
           //'images' => ImagesResource::collection(Image::find($this->imges)),
           'user' => new UserResource(products::find($this->id)->users),
           'depart' => new DepartResource(products::find($this->id)->depart),

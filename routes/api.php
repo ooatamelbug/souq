@@ -30,7 +30,7 @@ Route::put('users', 'userController@store');
 Route::delete('users/{id}', 'userController@destroy');
 
 
-Route::get('dealings', 'dealingController@index');
+Route::get('dealings', 'User\dealingController@index');
 Route::get('dealings/{id}', 'dealingController@show');
 Route::post('dealings', 'dealingController@store');
 Route::put('dealings', 'dealingController@store');

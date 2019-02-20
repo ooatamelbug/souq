@@ -4,6 +4,8 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use App\Http\Resources\Admin\Products as ProductsResource;
+
 class Dealing extends JsonResource
 {
     /**
@@ -15,8 +17,8 @@ class Dealing extends JsonResource
     public function toArray($request)
     {
       return [
-        'from' => Dealing::find($this->id)->productF,
-        'to' => Dealing::find($this->id)->productT,
+        'from' =>new ProductsResource(Dealing::find($this->id)->productF),
+        'to' =>new ProductsResource(Dealing::find($this->id)->productT),
         'cash' => $this->cash,
         'status' => $this->stat,
         'date' => $this->created_at,
